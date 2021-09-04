@@ -5,6 +5,8 @@ import {
   deleteContactAction,
   setFormUpdateContactAction,
 } from "../../store/actions/contactActions";
+import { motion } from "framer-motion";
+import { slideBottom } from "../Animate/Animations";
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -15,7 +17,10 @@ const ContactList = () => {
       {contacts.contacts.length > 0 &&
         contacts.contacts.map((contact, key) => {
           return (
-            <aside
+            <motion.aside
+              variants={slideBottom}
+              initial="hide"
+              animate="show"
               key={key}
               className={`bg-opacity-50 rounded-xl w-full lg:w-8/12 px-5 py-3 flex items-center justify-between ${
                 contacts.form.id == contact.id ? "bg-green-200" : "bg-white"
@@ -47,7 +52,7 @@ const ContactList = () => {
                   <CgTrashEmpty />
                 </div>
               </div>
-            </aside>
+            </motion.aside>
           );
         })}
     </main>
